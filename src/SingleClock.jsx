@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { useParams, Link } from "react-router-dom";
 import { timeZones } from "./timeZones";
 
-export default function Clock({ cityKey }) {
+export default function SingleClock() {
+  const params = useParams();
+
+  // return <div>{params.cityKey}</div>;
   const [time, setTime] = useState();
 
-  const timeZoneData = timeZones[cityKey];
+  const timeZoneData = timeZones[params.cityKey];
 
   useEffect(() => {
     setInterval(() => {
@@ -23,7 +26,6 @@ export default function Clock({ cityKey }) {
         {time}
       </div>
       <div className=" text-gray-600 underline hover:text-gray-400">
-       <Link to={`clock/${cityKey}`}>bigger</Link>
     </div>
     </div>
   );
